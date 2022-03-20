@@ -36,7 +36,7 @@ func Write(cmd *cobra.Command, args []string) error {
 		if create && ok && ce == &errCannotOpenFile {
 			p = properties.NewProperties()
 		} else {
-			return &errCouldNotSetProperty
+			return &errCannotOpenFile
 		}
 	}
 
