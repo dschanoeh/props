@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"os"
 
+	"github.com/magiconair/properties"
 	"github.com/spf13/cobra"
 )
 
@@ -17,6 +18,7 @@ var (
 		Args: cobra.ExactArgs(2),
 		RunE: Write,
 	}
+	create bool
 )
 
 func Write(cmd *cobra.Command, args []string) error {
@@ -27,7 +29,15 @@ func Write(cmd *cobra.Command, args []string) error {
 
 	p, err := readProperties()
 	if err != nil {
-		return err
+		/* If the file cannot be opened and the create flag is set,
+		 * use an empty properties object to start with.
+		 */
+		ce, ok := err.(*CmdError)
+		if create && ok && ce == &errCannotOpenFile {
+			p = properties.NewProperties()
+		} else {
+			return &errCouldNotSetProperty
+		}
 	}
 
 	err = p.SetValue(propertyName, propertyValue)
@@ -51,4 +61,8 @@ func Write(cmd *cobra.Command, args []string) error {
 	w.Flush()
 
 	return nil
+}
+
+func init() {
+	writeCmd.Flags().BoolVar(&create, "create", false, "When set, the properties file will be created if it doesn't exist yet")
 }
