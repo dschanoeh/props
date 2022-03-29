@@ -27,7 +27,7 @@ func Write(cmd *cobra.Command, args []string) error {
 	propertyValue := args[1]
 	encoding := getEncoding()
 
-	p, err := readProperties()
+	p, err := readProperties(cmd.InOrStdin())
 	if err != nil {
 		/* If the file cannot be opened and the create flag is set,
 		 * use an empty properties object to start with.
