@@ -39,7 +39,7 @@ func TestReadProperty(t *testing.T) {
 func TestReadUTF8(t *testing.T) {
 	b := bytes.NewBufferString("")
 	rootCmd.SetOut(b)
-	rootCmd.SetArgs([]string{"read", "foo", "--file", "../test-data/utf8.properties", "--utf8"})
+	rootCmd.SetArgs([]string{"read", "foo", "--file", "../test-data/utf8.properties"})
 	err := rootCmd.Execute()
 	if err != nil {
 		t.Errorf("Unexpected error %s", err)
@@ -50,6 +50,23 @@ func TestReadUTF8(t *testing.T) {
 	}
 	if string(out) != "🤓" {
 		t.Fatalf("expected \"%s\" got \"%s\"", "🤓", string(out))
+	}
+}
+
+func TestReadLatin1(t *testing.T) {
+	b := bytes.NewBufferString("")
+	rootCmd.SetOut(b)
+	rootCmd.SetArgs([]string{"read", "foo", "--file", "../test-data/utf8.properties", "--latin1"})
+	err := rootCmd.Execute()
+	if err != nil {
+		t.Errorf("Unexpected error %s", err)
+	}
+	out, err := ioutil.ReadAll(b)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(out) != "ð¤" {
+		t.Fatalf("expected \"%s\" got \"%s\"", "ð¤", string(out))
 	}
 }
 
