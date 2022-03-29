@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
-	"os"
 
 	"github.com/magiconair/properties"
 	"github.com/spf13/cobra"
@@ -21,7 +21,7 @@ var (
 func Read(cmd *cobra.Command, args []string) error {
 	propertyName := args[0]
 
-	p, err := readProperties()
+	p, err := readProperties(cmd.InOrStdin())
 	if err != nil {
 		return err
 	}
@@ -36,7 +36,7 @@ func Read(cmd *cobra.Command, args []string) error {
 	}
 }
 
-func readProperties() (*properties.Properties, error) {
+func readProperties(inputReader io.Reader) (*properties.Properties, error) {
 	var p *properties.Properties
 	var err error
 	encoding := getEncoding()
@@ -47,7 +47,7 @@ func readProperties() (*properties.Properties, error) {
 			return nil, &errCannotOpenFile
 		}
 	} else {
-		bytes, err := ioutil.ReadAll(os.Stdin)
+		bytes, err := ioutil.ReadAll(inputReader)
 		if err != nil {
 			return nil, &errCannotReadStdin
 		}
