@@ -5,7 +5,13 @@
 [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/dschanoeh/props)](https://hub.docker.com/r/dschanoeh/props)
 
 props is a command line interface to interact with [Java .properties files](https://en.wikipedia.org/wiki/.properties).
-It utilizes the [magiconair/properties](https://github.com/magiconair/properties) library and provides a thin command line interface wrapper.
+These files aren't as easy to parse as it seems at first sight (see the [format section](https://en.wikipedia.org/wiki/.properties#Format) for an example).
+
+Therefore, props utilizes the [magiconair/properties](https://github.com/magiconair/properties) library for proper parsing and provides a thin command line interface wrapper.
+
+There are also the following GitHub Actions that wrap props for use in GitHub workflows:
+* [get-property](https://github.com/dschanoeh/get-property)
+* [change-property](https://github.com/dschanoeh/change-property)
 
 ## Features
 
