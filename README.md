@@ -1,5 +1,9 @@
 # props
 
+![Tests](https://github.com/dschanoeh/props/actions/workflows/build.yaml/badge.svg)
+![License](https://img.shields.io/github/license/dschanoeh/props)
+[![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/dschanoeh/props)](https://hub.docker.com/r/dschanoeh/props)
+
 props is a command line interface to interact with [Java .properties files](https://en.wikipedia.org/wiki/.properties).
 It utilizes the [magiconair/properties](https://github.com/magiconair/properties) library and provides a thin command line interface wrapper.
 
