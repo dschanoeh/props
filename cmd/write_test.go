@@ -12,8 +12,8 @@ const (
 )
 
 func TestWriteFileNotFound(t *testing.T) {
-	file = "does-not-exist.properties"
-	err := Write(readCmd, []string{"foo", "bar"})
+	rootCmd.SetArgs([]string{"write", "foo", "bar", "--file", "does-not-exist.properties"})
+	err := rootCmd.Execute()
 	ce, ok := err.(*CmdError)
 	if !ok {
 		t.Errorf("No command error returned %s", err)
@@ -25,13 +25,13 @@ func TestWriteFileNotFound(t *testing.T) {
 
 func TestSimpleWrite(t *testing.T) {
 	fileName := "basic.properties"
-	file = tmpFolder + string(os.PathSeparator) + fileName
 	err := createTemporaryFile(fileName, testDataFolder, tmpFolder)
 	if err != nil {
 		t.Errorf("Unexpected error when setting up test %s", err)
 	}
 
-	err = Write(readCmd, []string{"foo", "baz"})
+	rootCmd.SetArgs([]string{"write", "foo", "baz", "--file", tmpFolder + string(os.PathSeparator) + fileName})
+	err = rootCmd.Execute()
 	if err != nil {
 		t.Errorf("Unexpected error when writing %s", err)
 	}

@@ -29,7 +29,7 @@ func Read(cmd *cobra.Command, args []string) error {
 	propertyValue, found := p.Get(propertyName)
 
 	if found {
-		fmt.Println(propertyValue)
+		fmt.Fprint(cmd.OutOrStdout(), propertyValue)
 		return nil
 	} else {
 		return &errPropertyNotFound
