@@ -1,6 +1,6 @@
 # props
 
-![Tests](https://github.com/dschanoeh/props/actions/workflows/build.yaml/badge.svg)
+![Tests](https://github.com/dschanoeh/props/actions/workflows/test.yaml/badge.svg)
 ![License](https://img.shields.io/github/license/dschanoeh/props)
 [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/dschanoeh/props)](https://hub.docker.com/r/dschanoeh/props)
 
