@@ -18,7 +18,8 @@ There are also the following GitHub Actions that wrap props for use in GitHub wo
 * Extract a property value from a file
 * Replace a property value in a file
 * Create the properties file if it doesn't exist
-* ISO-8859-1 or UTF-8 encoding
+* Support for UTF-8 (default) or ISO-8859-1/Latin1 encoding. Note that
+  ISO-8859-1 is used by Java < 9 and UTF-8 is used by default in Java >= 9
 * File-based processing or STDIN/STDOUT
 
 ## Example Usage

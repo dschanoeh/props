@@ -8,9 +8,9 @@ import (
 )
 
 var (
-	file    string
-	useUTF8 bool = false
-	rootCmd      = &cobra.Command{
+	file      string
+	useLatin1 bool = false
+	rootCmd        = &cobra.Command{
 		Use:   "props command",
 		Short: "Reads or writes properties from and to properties files",
 		Long:  ``,
@@ -19,7 +19,7 @@ var (
 
 func init() {
 	rootCmd.PersistentFlags().StringVar(&file, "file", "", "Properties file. If not set, STDIN/STDOUT is used")
-	rootCmd.PersistentFlags().BoolVar(&useUTF8, "utf8", false, "Select UTF-8 encoding instead of the default ISO-8859-1")
+	rootCmd.PersistentFlags().BoolVar(&useLatin1, "latin1", false, "Select Latin-1 encoding instead of the default UTF-8")
 	rootCmd.AddCommand(writeCmd)
 	rootCmd.AddCommand(readCmd)
 }
@@ -35,8 +35,8 @@ func Execute() {
 }
 
 func getEncoding() properties.Encoding {
-	if useUTF8 {
-		return properties.UTF8
+	if useLatin1 {
+		return properties.ISO_8859_1
 	}
-	return properties.ISO_8859_1
+	return properties.UTF8
 }
