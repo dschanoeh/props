@@ -3,7 +3,7 @@ module github.com/dschanoeh/props
 go 1.17
 
 require (
-	github.com/magiconair/properties v1.8.6
+	github.com/magiconair/properties v1.8.7
 	github.com/spf13/cobra v1.5.0
 )
 
